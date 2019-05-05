@@ -16,4 +16,7 @@ git rm <file>删除文件
 将本地中仓库中的内容推送到远程仓库中
 git remote add origin https://github.com/misChenHao/study.git
 git push -u origin master -f
+
+将远程仓库中的内容拉取到本地仓库中
+git pull -u origin master
 当git日志信息过长无法进入git命令编辑状态时，可以按下字母q退出。
