@@ -1,0 +1,19 @@
+基础
+git init 初始化一个空的git仓库
+git status 查看仓库中的文件及内容是否有变动
+git add <file>向暂存区中添加文件
+git commit -m "新增了一条" 向日志中添加一条记录
+git log 查看日志
+切记，修改后还需要再add才能commit。
+git checkout -- <file>通过文件名撤销对文件上一步操作的改变
+在执行git add之后运行
+git reset HEAD <file>撤回上一步操作
+git log --oretty=oneline使日志简化形式显示
+git reset --hard HEAD^ 退回上一个版本(HEAD^^表示退回上两个版本，HEAD~50退回上50个版本)
+git reset --hard 标识符  回复任意版本的内容
+git rm <file>删除文件
+
+将本地中仓库中的内容推送到远程仓库中
+git remote add origin https://github.com/misChenHao/study.git
+git push -u origin master -f
+当git日志信息过长无法进入git命令编辑状态时，可以按下字母q退出。
