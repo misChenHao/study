@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加空气质量信息</title>
+    <script src="../js/JavaScript/jquery.js"></script>
+    <script src="../js/JavaScript/pintuer.js"></script>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <script src="../js/common/base.js"></script>
+    <script src="../js/common/normal.js"></script>
+</head>
+<body>
+<div align="center" style="width: 100%;height: 100%">
+    <div style="border: 1px solid;width: 40%;height: 40%" align="center">
+        <h1>添加空气质量</h1>
+        <form id="ff">
+            <table>
+                <tr>
+                    <td>监测区域：</td>
+                    <td>
+                        <select name="districtId" id="districtId">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>监测日期：</td>
+                    <td>
+                        <input type="text" name="monitorTime">
+                    </td>
+                </tr>
+                <tr>
+                    <td>PM10值：</td>
+                    <td>
+                        <input type="text" name="pm10">
+                    </td>
+                </tr>
+                <tr>
+                    <td>PM2.5值：</td>
+                    <td>
+                        <input type="text" name="pm25">
+                    </td>
+                </tr>
+                <tr>
+                    <td>监测站：</td>
+                    <td>
+                        <input type="text" name="monitoringStation">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" value="保存" onclick="ti()">
+                        <input type="reset" value="重置">
+                        <input type="button" value="返回" onclick="location.href='index.html'">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(function () {
+        $.post("selectAll", null, function (result) {
+            var obj = $.dealJSONObj(result);
+            $("#districtId").selectRenderByArray(obj.data, "id", "name", "", "-不限-")
+        })
+    });
+
+    function ti() {
+        var zz =  /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+        var z = /^[0-9]{1,4}%/;
+        if ($("#districtId").val() != null && $("#districtId").val() != "") {
+            if (zz.test($("[name=monitorTime]").val())) {
+                if (z.test($("[name=pm10]").val())) {
+                    if (z.test($("[name=pm25]").val())) {
+                        $.post("insAirQualityIndex", $("#ff").serialize(), function (result) {
+                            var obj = $.dealJSONObj(result);
+                            if (obj.code === 0) {
+                                alert(obj.msg);
+                            } else {
+                                alert(obj.msg);
+                            }
+                        })
+                    } else {
+                        alert("请输入正确的数据")
+                    }
+                } else {
+                    alert("请输入正确的数据")
+                }
+            } else {
+                alert("请输入正确的时间")
+            }
+        } else {
+            alert("请选择区域")
+        }
+    }
+</script>

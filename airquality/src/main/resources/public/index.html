@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script src="../js/JavaScript/jquery.js"></script>
+    <script src="../js/JavaScript/pintuer.js"></script>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <script src="../js/common/base.js"></script>
+    <script src="../js/common/normal.js"></script>
+    <style>
+        table tr td {
+            border: 1px solid;
+        }
+
+        table thead tr {
+            background-color: #0092DC;
+        }
+
+        table tbody tr:nth-of-type(odd) {
+            background-color: #04f730;
+        }
+    </style>
+    <script src="../js/moment/moment.min.js"></script>
+</head>
+<body>
+<div align="center" style="width: 100%;height: 100%">
+    <div id="dd">
+        <form id="ff">
+            <div>
+                <h1>空气质量监测信息库</h1>
+                <input type="hidden" name="page">
+                按区域查询
+                <select name="districtId" id="districtId" onchange="on()"></select>
+                <input type="button" onclick="sel()" value="查找">&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="insert.html">添加空气质量信息</a>
+            </div>
+        </form>
+        <div style="width: 50%;height: 50%" align="center" id="di">
+            <table style="width: 100%">
+                <thead>
+                <tr>
+                    <td style="width: 15%">序号</td>
+                    <td style="width: 15%">区域</td>
+                    <td style="width: 20%">检测时间</td>
+                    <td style="width: 15%">PM10数据</td>
+                    <td style="width: 15%">PM2.5数据</td>
+                    <td style="width: 20%">监测站</td>
+                </tr>
+                </thead>
+                <tbody id="tb">
+
+                </tbody>
+                <tfoot id="tfoot">
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div id="dt" align="center" style="border:1px solid;width: 40%;height: 40%">
+        <div>
+            <h1>空气质量信息维护页面</h1>
+            <form id="ft">
+                <table>
+                    <tr>
+                        <td>监测区域:</td>
+                        <td>
+                            <input type="hidden" name="id">
+                            <select name="districtId" id="districtIds"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>PM10值：</td>
+                        <td><input type="text" name="pm10" id="pm10"></td>
+                    </tr>
+                    <tr>
+                        <td>PM2.5值：</td>
+                        <td><input type="text" name="pm25" id="pm25"></td>
+                    </tr>
+                    <tr>
+                        <td>监测站：</td>
+                        <td><input type="text" name="monitoringStation" id="monitoringStation"></td>
+                    </tr>
+                    <tr>
+                        <td>最后修改时间：</td>
+                        <td>
+                            <input type="hidden" name="monitorTime">
+                            <input type="text" id="lastModifyTimes" disabled="disabled">
+                            <input type="hidden" name="lastModifyTime" id="lastModifyTime">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="button" value="更新" onclick="geng()">
+                            <input type="button" value="删除" onclick="shan()">
+                            <input type="button" value="返回" onclick="fan()">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(function () {
+        $("#dd").attr("hidden", false);
+        $("#dt").attr("hidden", true);
+        $("[name=page]").val(1);
+        $("#lastModifyTime").val(new Date());
+        sel();
+        xuan();
+    });
+
+    function xuan() {
+        $.post("selectAll", null, function (result) {
+            var obj = $.dealJSONObj(result);
+            $("[name=districtId]").selectRenderByArray(obj.data, "id", "name", "", "-不限-")
+        })
+    }
+
+    function sel() {
+        $.post("selAirQualityIndex", $("#ff").serialize(), function (result) {
+            var obj = $.dealJSONObj(result);
+            console.log(obj.data);
+            if (obj.code === 0) {
+                var tfoot = "";
+                // language=HTML
+                var tt = "<tr>\n    <td colspan=\"6\">\n        <a href=\"javascript:void(0)\" onclick=\"first(1)\">首页</a>&nbsp;|&nbsp;\n        <a href=\"javascript:void(0)\" onclick=\"prev({0})\">《上一页</a>&nbsp;|&nbsp;\n        <a href=\"javascript:void(0)\" onclick=\"next({1})\">下一页》</a>&nbsp;|&nbsp;\n        <a href=\"javascript:void(0)\" onclick=\"last({2})\">末页</a>\n        第<span id=\"_page\">{3}</span>页/共 <span id=\"_pageCount\">{4}</span>页(<span id=\"_dataCount\">{5}</span>条)\n    </td>\n</tr>";
+                var data = "";
+                var row = "<tr>\n    <td>{0}</td>\n    <td><a href=\'javascript:void(0)\' onclick=\'kong({0})\'>{1}</a></td>\n    <td>{2}</td>\n    <td>{3}</td>\n    <td>{4}</td>\n    <td>{5}</td>\n</tr>";
+                $.each(obj.data.list, function (k, v) {
+                    data += row.formatStr(v.id, v.name, fmtDate(v.monitorTime), v.pm10, v.pm25, v.monitoringStation);
+                    // console.log(moment(v.monitorTime).format('YYYY-MM-DD HH:mm:ss'))//时间转换
+                });
+                tfoot += tt.formatStr(
+                    obj.data.hasPreviousPage ? obj.data.prePage : 1,
+                    obj.data.hasNextPage ? obj.data.nextPage : obj.data.lastPage,
+                    obj.data.lastPage,
+                    obj.data.pageNum,
+                    obj.data.pages,
+                    obj.data.total
+                );
+                $("#tb").empty().html(data);
+                $("#tfoot").empty().html(tfoot);
+            } else {
+                $("#di").empty().html("<b style='size: A3'>抱歉，暂无数据！</b>").css("color", "red")
+            }
+        })
+    }
+
+    function kong(id) {
+        $("#dd").attr("hidden", true);
+        $("#dt").attr("hidden", false);
+        $.post("selectAirQualityIndex", {id: id}, function (result) {
+            var obj = $.dealJSONObj(result);
+            if (obj.code === 0) {
+                $("[name=id]").val(id);
+                $("#districtIds").val(obj.data.districtId);
+                $("#pm10").val(obj.data.pm10);
+                $("#pm25").val(obj.data.pm25);
+                $("[name=monitorTime]").val(obj.data.monitorTime);
+                $("#monitoringStation").val(obj.data.monitoringStation);
+                $("#lastModifyTimes").val(moment(obj.data.lastModifyTime).format('YYYY-MM-DD'));
+            } else {
+                alert("查询失败")
+            }
+        })
+    }
+
+    function geng() {
+        $.post("upAirQualityIndex", $("#ft").serialize(), function (result) {
+            var obj = $.dealJSONObj(result);
+            if (obj.code === 0) {
+                alert(obj.msg);
+                $("#dd").attr("hidden", false);
+                $("#dt").attr("hidden", true);
+            } else {
+                alert(obj.msg);
+            }
+        })
+    }
+
+    function shan() {
+        if (confirm("确定要删除吗？")) {
+            var id = $("[name=id]").val();
+            $.post("delAirQualityIndex", {id: id}, function (result) {
+                var obj = $.dealJSONObj(result);
+                if (obj.code === 0) {
+                    alert(obj.msg);
+                    $("#dd").attr("hidden", false);
+                    $("#dt").attr("hidden", true);
+                } else {
+                    alert(obj.msg);
+                }
+            });
+        }
+    }
+
+    function fan() {
+        $("#dd").attr("hidden", false);
+        $("#dt").attr("hidden", true);
+    }
+
+    function on() {
+        $("[name=page]").val(1);
+    }
+
+    function first() {
+        $("[name=page]").val(1);
+        sel();
+    }
+
+    function prev(pa) {
+        // if (page > 1) {
+        //     $("[name=page]").val(page - 1);
+        // } else {
+        $("[name=page]").val(pa);
+        // }
+        sel();
+    }
+
+    function next(pageCount) {
+        // if (page < pageCount) {
+        //     $("[name=page]").val(page + 1);
+        // } else {
+        $("[name=page]").val(pageCount);
+        // }
+        sel();
+    }
+
+    function last(pageCount) {
+        $("[name=page]").val(pageCount);
+        sel();
+    }
+
+    function fmtDate(obj) {
+        var date = new Date(obj);
+        var y = 1900 + date.getYear();
+        var m = "0" + (date.getMonth() + 1);
+        var d = "0" + date.getDate();
+        return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length);
+    }
+</script>
