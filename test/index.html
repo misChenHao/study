@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>胡歌简介</title>
+    <!-- CSS -->
+    <style type="text/css">
+        body {
+            font-family: 'Microsoft Yahei', '微软雅黑', Arial, 'Hiragino Sans GB', '宋体';
+            color: #555;
+        }
+
+        #nav {
+            line-height: 24px;
+            list-style-type: none;
+            background: #666;
+        }
+
+        #nav a {
+            display: block;
+            width: 80px;
+            text-align: center;
+        }
+
+        #nav a:link {
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        #nav a:visited {
+            color: #666;
+            text-decoration: none;
+        }
+
+        #nav a:hover {
+            color: #FF9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #nav li {
+            float: left;
+            width: 80px;
+            background: #666;
+        }
+
+        #nav li a:hover {
+            background: #999;
+        }
+
+        #nav {
+            line-height: 24px;
+            list-style-type: none;
+            background: #666;
+        }
+
+        #nav a {
+            display: block;
+            width: 80px;
+            text-align: center;
+        }
+
+        #nav a:link {
+            color: #666;
+            text-decoration: none;
+        }
+
+        #nav a:visited {
+            color: #666;
+            text-decoration: none;
+        }
+
+        #nav a:hover {
+            color: #FFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #nav li {
+            float: left;
+            width: 80px;
+            background: #9C9;
+        }
+
+        #nav li a:hover {
+            background: #F96;
+        }
+
+        #nav li ul {
+            line-height: 27px;
+            list-style-type: none;
+            text-align: left;
+            left: -999em;
+            width: 180px;
+            position: absolute;
+        }
+
+        #nav li ul li {
+            float: left;
+            width: 180px;
+            background: #F6F6F6;
+        }
+
+        #nav li ul a {
+            display: block;
+            width: 180px;
+            w\idth: 156px;
+            text-align: left;
+            padding-left: 24px;
+        }
+
+        #nav li ul a:link {
+            color: #666;
+            text-decoration: none;
+        }
+
+        #nav li ul a:visited {
+            color: #666;
+            text-decoration: none;
+        }
+
+        #nav li ul a:hover {
+            color: #F3F3F3;
+            text-decoration: none;
+            font-weight: normal;
+            background: #F66;
+        }
+
+        #nav li:hover ul {
+            left: auto;
+        }
+
+        #nav li.sfhover ul {
+            left: auto;
+        }
+
+        #content {
+            clear: left;
+        }
+
+        h1, .h1,
+        h2, .h2,
+        h3, .h3,
+        h4, .h4,
+        h5, .h5,
+        h6, .h6 {
+            margin-top: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: normal;
+            color: #333;
+        }
+
+        /*
+         * Override Bootstrap's default container.
+         */
+
+        @media (min-width: 1200px) {
+            .container {
+                width: 970px;
+            }
+        }
+
+        /*
+         * Masthead for nav
+         */
+
+        .blog-masthead {
+            background-color: #666;
+            position: fixed;
+            width: 100%;
+            z-index: 999;
+            /*-webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+                    box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);*/
+        }
+
+        /* Nav links */
+        .blog-nav-item {
+            position: relative;
+            display: inline-block;
+            padding: 10px;
+            font-weight: 500;
+            color: #cdddeb;
+        }
+
+        .blog-nav-item:hover,
+        .blog-nav-item:focus {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Active state gets a caret at the bottom */
+        .blog-nav .active {
+            color: #fff;
+        }
+
+        .blog-nav .active:after {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 0;
+            margin-left: -5px;
+            vertical-align: middle;
+            content: " ";
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid;
+            border-left: 5px solid transparent;
+        }
+
+        /*
+         * Blog name and description
+         */
+
+        .blog-header {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .blog-title {
+            margin-top: 30px;
+            margin-bottom: 0;
+            font-size: 60px;
+            font-weight: normal;
+        }
+
+        .blog-description {
+            font-size: 20px;
+            color: #999;
+        }
+
+        /*
+         * Main column and sidebar layout
+         */
+
+        .blog-main {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        /* Sidebar modules for boxing content */
+        .sidebar-module {
+            padding: 15px;
+            margin: 0 -15px 15px;
+        }
+
+        .sidebar-module-inset {
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+
+        .sidebar-module-inset p:last-child,
+        .sidebar-module-inset ul:last-child,
+        .sidebar-module-inset ol:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Pagination */
+        .pager {
+            margin-bottom: 60px;
+            text-align: left;
+        }
+
+        .pager > li > a {
+            width: 140px;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 30px;
+        }
+
+        /*
+         * Blog posts
+         */
+
+        .blog-post {
+            margin-bottom: 60px;
+        }
+
+        .blog-post-title {
+            margin-bottom: 5px;
+            font-size: 40px;
+        }
+
+        .blog-post-meta {
+            margin-bottom: 20px;
+            color: #999;
+        }
+
+        /*
+         * Footer
+         */
+
+        .blog-footer {
+            padding: 40px 0;
+            color: #999;
+            text-align: center;
+            background-color: #6F9;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .blog-footer p:last-child {
+            margin-bottom: 0;
+
+        body {
+            background: #CFF1FC
+        }
+
+        a:hover, a:focus {
+            color: #019875
+        }
+
+        .intr {
+            background-color: #FC9;
+            background-size: cover;
+            width: 100%;
+            height: 490px;
+            text-align: center
+        }
+
+        .intr .avtar {
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 100px;
+            background: url(../image/2.jpg) center;
+            background-size: cover;
+            transition: 1s
+        }
+
+        .intr .avtar:hover {
+            transform: rotate(360deg)
+        }
+
+        .intr .peointr {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 30px
+        }
+
+        .title {
+            width: 960px;
+            box-sizing: border-box;
+            display: table;
+            margin: 10px auto;
+            border-bottom: 1px dashed #019875;
+            padding-bottom: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #019875;
+            padding-left: 20px;
+            transition: 1s
+        }
+
+        .title:hover {
+            width: 100%;
+            opacity: 0.5
+        }
+
+        .content {
+            width: 960px;
+            box-sizing: border-box;
+            display: table;
+            margin: 20px auto;
+            min-height: 350px;
+            background: #FFF4F4
+        }
+
+        .carousel .carousel-inner img {
+            width: 100%;
+            height: 350px
+        }
+
+        .tab-content .tab-pane {
+            padding: 20px
+        }
+
+        .text {
+            color: #019875;
+            font-size: 20px
+        }
+
+        .pic {
+            width: 250px;
+            height: 300px;
+            padding: 15px;
+            background-color: #f1f1f1;
+            display: inline-block;
+            float: left;
+            margin: 10px;
+            transition: 1s
+        }
+
+        .pic img {
+            width: 220px;
+            height: 250px
+        }
+
+        .pic p {
+            color: #019875;
+            padding-top: 5px;
+            text-align: center
+        }
+
+        .pic.pic1 {
+            transform: rotate(-15deg) translateX(50px) translateY(40px)
+        }
+
+        .pic.pic2 {
+            transform: translateX(80px)
+        }
+
+        .pic.pic3 {
+            transform: rotate(15deg) translateX(100px)
+        }
+
+        .pic:hover {
+            background: #019875;
+            opacity: 0.8
+        }
+
+        .pic:hover p {
+            color: #fff
+        }
+
+        a.btt {
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            color: #fff;
+            position: fixed;
+            background: #019875;
+            bottom: 50px;
+            right: 50px;
+            text-align: center
+        }
+    </style>
+    <link href="css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<div class="blog-masthead" style="border: 2px solid green">
+    <div class="container" style="border: 2px solid blue">
+        <nav class="blog-nav" style="border: 2px solid red">
+            <ul id="nav" style="border: 2px solid yellow">
+                <li><a class="blog-nav-item active" href="index.html">首页</a>
+
+                </li>
+                <li><a class="blog-nav-item" href="#part1">主要作品</a>
+                    <ul>
+                        <li>
+                            <a href="http://v.youku.com/v_show/id_XMzEyODg5NjA0MA==.html?spm=a2h0k.8191407.0.0&from=s1.8-3-1.1">猎场</a>
+                        </li>
+                        <li>
+                            <a href="http://v.youku.com/v_show/id_XMTMzOTkzNjU0OA==.html?spm=a2h0k.8191407.0.0&from=s1.8-3-1.1">琅琊榜</a>
+                        </li>
+                        <li>
+                            <a href="http://v.youku.com/v_show/id_XMTI5MjYyMTA5Mg==.html?spm=a2h0k.8191407.0.0&from=s1.8-3-1.1">仙剑奇侠传</a>
+                        </li>
+                        <li>
+                            <a href="http://www.soku.com/search_video/q_%E8%83%A1%E6%AD%8C?f=1&kb=040200000000000__%E8%83%A1%E6%AD%8C&spm=a2hww.20027244.#qheader_search~10">其他</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a class="blog-nav-item" href="#part2">写真合辑</a>
+                    <ul>
+                        <li>
+                            <a href="https://image.baidu.com/search/index?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1513772456598_R&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=utf-8&word=%E8%83%A1%E6%AD%8C%E6%9D%82%E5%BF%97%E5%B0%81%E9%9D%A2">杂志封面</a>
+                        </li>
+                        <li>
+                            <a href="https://image.baidu.com/search/index?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1513772588566_R&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=utf-8&word=%E8%83%A1%E6%AD%8C%E6%97%A5%E5%B8%B8%E7%94%9F%E6%B4%BB">日常生活</a>
+                        </li>
+                        <li>
+                            <a href="https://image.baidu.com/search/index?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1513772639988_R&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=utf-8&word=%E8%83%A1%E6%AD%8C%E5%BD%B1%E8%A7%86%E7%9B%B8%E5%85%B3">影视原型</a>
+                        </li>
+                        <li>
+                            <a href="https://image.baidu.com/search/index?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1513772661400_R&pv=&ic=0&nc=1&z=&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&ie=utf-8&word=%E8%83%A1%E6%AD%8C">其他</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                <li><a class="blog-nav-item" href="#part3">个人简介</a>
+                    <ul>
+                        <li><a class="blog-nav-item" href="#part3">早年经历</a></li>
+                        <li><a class="blog-nav-item" href="#part3">演艺经历</a></li>
+                        <li><a class="blog-nav-item" href="#part3">获奖经历</a></li>
+                        <li><a href="https://baike.baidu.com/item/%E8%83%A1%E6%AD%8C/312718?fr=aladdin">更多详情</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="intr" style="border: 2px solid green">
+    <span class="avtar"></span>
+    <p class="peointr">胡歌，1982年9月20日出生于上海市徐汇区。</p>
+    <p class="peointr">中国内地演员、歌手、制片人。</p>
+</div>
+<div class="title" id="part1" style="border: 2px solid blue">主要作品</div>
+<div class="content" style="border: 2px solid yellow">
+    <div class="pic pic1" style="border: 2px solid green">
+        <img src="image/h1.jpg" alt="">
+        <p>《猎场》</p>
+    </div>
+    <div class="pic pic2" style="border: 2px solid green">
+        <img src="image/h2.jpg" alt="">
+        <p>《琅琊榜》</p>
+    </div>
+    <div class="pic pic3" style="border: 2px solid green">
+        <img src="image/h3.jpg" alt="">
+        <p>《仙剑奇侠传》</p>
+    </div>
+</div>
+<div class="title" id="part2" style="border: 2px solid green">写真合辑</div>
+<div class="content" style="border: 2px solid green">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="border: 2px solid green">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox" style="border: 2px solid green">
+            <div class="item active">
+                <img src="image/s1.jpg" alt="...">
+            </div>
+            <div class="item">
+                <img src="image/s2.jpg" alt="...">
+            </div>
+            <div class="item">
+                <img src="image/s3.jpg" alt="...">
+            </div>
+            <div class="item">
+                <img src="image/s4.jpg" alt="...">
+            </div>
+        </div>
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+<div class="title" id="part3" style="border: 2px solid green">个人简介</div>
+<div class="content" style="border: 2px solid green">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#home" role="tab" data-toggle="tab">早年经历</a></li>
+        <li><a href="#profile" role="tab" data-toggle="tab">演艺经历</a></li>
+        <li><a href="#messages" role="tab" data-toggle="tab">获奖记录</a></li>
+    </ul>
+    <div class="tab-content" style="border: 2px solid green">
+        <div class="tab-pane active" id="home" style="border: 2px solid green">
+            <p class="text">这里例举胡歌早年关于演绎发展方面的经历：</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;胡歌在上幼儿园的时候，他被上海电视台小荧星艺术团选中，那年上海有3万多儿童去考，最后录取了60名，胡歌是其中之一。</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1996年，上海教育电视台面向上海滩招聘中学生主持人，胡歌成功突围而出，当选该台《阳光少年》栏目主持人，并且在这个小主持人的行业上做了几年。</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;同时，他曾在上海东方广播电台身兼多个栏目的主持人和记者，做过杂志的学生编辑，在徐汇区少年宫话剧社演
+                出的话剧《红手绢的故事》获得了上海市第二届学生艺术节话剧专场一等奖，还在电影《国歌》中露脸，并参与了动画电.影《宝莲灯》的配音</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2001年，胡歌考上中央戏剧学院的导演系，专业成绩是第二名（第一名为保送生），后来又
+                去上海戏剧学院表演系面试，考了第三名，因上戏老师的劝说和家庭原因而选择留在上海.</p>
+
+        </div>
+        <div class="tab-pane" id="profile" style="border: 2px solid green">
+            <p class="text">这里例举胡歌的主要作品演艺经历：</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;胡歌在大学一年级第二学期的时候，他的朋友给上海唐人电影制
+                作有限公司投拍的电视剧配音，胡歌因此与导演相识。其后与唐人公司签约。大学期间胡歌在课余拍摄了超过30条的广告，还参演了电影《假装没感觉》和《疑神疑鬼》。</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2004年2月27日，主演的第一部电视剧《蒲公英》首播，胡歌饰演农科生程灏.</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2005年1月24日，主演的古装仙侠剧《仙剑奇侠传》播出，胡歌饰演豪爽深情的李逍遥，并演唱两首插曲《六月的雨》和《逍遥叹》；
+                12月13日，古装神怪单元剧《新聊斋志异》首播，胡歌主演《小倩》单元饰演书生宁采臣</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2006年1月15日，主演的古装神话剧《天外飞仙》首播，胡歌饰演“地瓜”董永，并演唱两首插曲《天亮以后》和《月光》。</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2005年9月26日，主演的古装历史剧《少年杨家将》首播，胡歌饰演杨六郎杨延昭，并演唱插曲《告诉他我爱她》；10月25日，发行首张EP专辑《珍惜》。</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2007年6月23日，胡歌在受伤治疗期间创作的书籍《幸福的拾荒者》发布。</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2009年6月28日，主演的古装仙侠剧《仙剑奇侠传三》首播，胡歌首次一人分饰三角，饰演永安当伙计景天、姜国太子龙阳、神界天将飞蓬，并演唱片尾曲《忘记时间》和插曲《光棍》。</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2010年1月2日，主演的穿越历史剧《神话》在央视八套首播，胡歌饰演现代青年易小川、秦朝将军蒙毅，并与白冰演唱片尾曲《美丽的神话》。</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2015年8月31日，主演的民国谍战剧《伪装者》在湖南卫视首播，胡歌饰演军统特工明台；9月19日，主演的古装传奇剧《琅琊榜》首播，胡歌饰演麒麟才子梅长苏，并演唱主题曲《风起时》。</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2017年1月27日，第二次登上央视春节联欢晚会演唱歌曲《在此刻》。</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2017年11月6日，主演的都市职场剧《猎场》在湖南卫视首播，胡歌饰演命运多舛的高级猎头郑秋冬，并演唱主题曲《盛开》。</p>
+
+
+        </div>
+        <div class="tab-pane" id="messages" style="border: 2px solid green">
+            <p class="text"> 以下例举重要获奖事项：</p>
+            <p class="text"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2017-09-22 2017年 福布斯中国名人榜 第18名（获奖）。</p>
+            <p class="text"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2006-06-06 第2届 电视剧风云盛典 内地最受欢迎男演员
+                仙剑奇侠传（获奖）。</p>
+            <p class="text"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2015-06-12 第21届 上海电视节白玉兰奖 最佳男配角
+                四十九日·祭（提名）。</p>
+            <p class="text"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016-06-10 第22届 上海电视节白玉兰奖 最佳男主角
+                琅琊榜（获奖）。</p>
+            <p class="text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016-10-16 第28届 中国电视金鹰奖 观众喜爱的男演员 琅琊榜
+                获奖）。</p>
+        </div>
+    </div>
+</div>
+<div class="blog-footer" style="border: 2px solid green">
+    <p class="text"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copyright&copy;seven</p>
+</div>
+<a href="" class="btt" style="border: 2px solid green">顶部</a>
+<!-- Js-->
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugin.js"></script>
+</body>
+</html>
